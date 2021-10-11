@@ -8,7 +8,7 @@
     "watch": "tsc -w",
     "lint": "eslint -c .eslintrc --ext .ts ./src",
     "start": "npm run build && electron ./dist/main.js",
-    "deploy": "electron-builder"
+    "deploy": "npm run build && electron-builder -w --config"
   },
   "repository": "https://github.com/electron/electron-quick-start-typescript",
   "keywords": [
@@ -28,37 +28,5 @@
     "electron-builder": "^22.13.1",
     "eslint": "^7.32.0",
     "typescript": "^4.4.3"
-  },
-  "build": {
-    "appId": "com.electron.test",
-    "productName": "TS-Electron",
-    "copyright": "Copyright © 2021 MillenniumEarl",
-    "asar": true,
-    "publish": [
-      "github"
-    ],
-    "files": [
-      "**/*",
-      "!src/*",
-      "!.github${/*}",
-      "!.gitattributes",
-      "!.gitignore"
-    ],
-    "directories": {
-      "output": "./deploy"
-    },
-    "win": {
-      "target": "nsis",
-      "publisherName": "MillenniumEarl",
-      "verifyUpdateCodeSignature": false
-    },
-    "mac": {
-      "category": "public.app-category.developer-tools",
-      "target": "default",
-      "type": "distribution"
-    },
-    "linux": {
-      "target": "AppImage"
-    }
   }
 }
