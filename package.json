@@ -1,12 +1,14 @@
 {
   "name": "electron-quick-start-typescript",
+  "main": "./dist/main.js",
   "version": "1.0.0",
   "description": "A minimal Electron application written with Typescript",
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
     "lint": "eslint -c .eslintrc --ext .ts ./src",
-    "start": "npm run build && electron ./dist/main.js"
+    "start": "npm run build && electron ./dist/main.js",
+    "deploy": "electron-builder"
   },
   "repository": "https://github.com/electron/electron-quick-start-typescript",
   "keywords": [
@@ -23,8 +25,40 @@
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "electron": "^15.1.1",
+    "electron-builder": "^22.13.1",
     "eslint": "^7.32.0",
     "typescript": "^4.4.3"
   },
-  "dependencies": {}
+  "build": {
+    "appId": "com.electron.test",
+    "productName": "TS-Electron",
+    "copyright": "Copyright © 2021 MillenniumEarl",
+    "asar": true,
+    "publish": [
+      "github"
+    ],
+    "files": [
+      "**/*",
+      "!src/*",
+      "!.github${/*}",
+      "!.gitattributes",
+      "!.gitignore"
+    ],
+    "directories": {
+      "output": "./deploy"
+    },
+    "win": {
+      "target": "nsis",
+      "publisherName": "MillenniumEarl",
+      "verifyUpdateCodeSignature": false
+    },
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "target": "default",
+      "type": "distribution"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
 }
